@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gossip Show</title>
+  </head>
+  <body>
+    <h1>Voici la page du potin n°<%= params[:id].to_i + 1 %></h1>
+    <ul>
+      <li>Son auteur : <%= @potin.author %></li>
+      <li>Le contenu du potin : <%= @potin.content %></li>
+    </ul>
+    <a href="/">pour revenir à la page des potins</a>
+  </body>
+</html>

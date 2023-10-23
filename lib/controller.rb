@@ -10,24 +10,16 @@ class ApplicationController < Sinatra::Base
     end
 
     get '/gossips/:id' do
-        index = params[:id].to_i
-        @gossip = Gossip.all[index]
-        erb :show
+      id = params[:id].to_i
+      @potin = Gossip.all[id]
+      erb :show
     end
-
-    get '/gossips/:id/edit' do
-        index = params[:id].to_i
-        @gossip = Gossip.all[index]
-        erb :edit
-    end
-
     post '/gossips/new' do
       author = params[:gossip_author]
       content = params[:gossip_content]
     
       if author.empty? || content.empty?
-        # Si l'un des champs est vide, tu peux rediriger l'utilisateur ou afficher un message d'erreur.
-        redirect '/gossips/new'  # Redirige l'utilisateur vers le formulaire de création
+        redirect '/gossips/new'  #vers le formulaire de création
       else
         gossip = Gossip.new(author, content)
         gossip.save
@@ -35,11 +27,4 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    post '/gossips/:id/edit' do
-        index = params[:id].to_i
-        @gossip = Gossip.all[index]      
-        @gossip.content = params[:content].to_s   
-        Gossip.update(index, @gossip.content)      
-        redirect '/'
-    end      
 end
