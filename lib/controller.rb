@@ -3,8 +3,12 @@ Bundler.require
 
 class ApplicationController < Sinatra::Base
   get '/' do
-    "<title>The Gossip Project</title>\n\nMon super site de gossip !"
+    erb :index
   end
-
-  run! if app_file == $0
+  get '/gossips/new' do
+    erb :new_gossip
+  end
+  post '/gossips/new/' do
+    puts "Hello World"
+  end
 end
